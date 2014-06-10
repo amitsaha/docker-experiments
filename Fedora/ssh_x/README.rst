@@ -10,7 +10,7 @@ Build the container using::
 
 Run the container::
 
-    $ docker run -P -d -t fedora
+    $ docker run -P -d -t fedora-ssh-x
 
 Find the mapped port on the host::
 
@@ -22,8 +22,7 @@ Find the mapped port on the host::
 Logging into the container
 ==========================
 
-Find the IP of the `docker0` interface and ssh to it passing the above
-mapped port::
+Find the public IP of your host and ssh to it passing the above mapped port::
 
     $ ssh -X test@172.17.42.1 -p 49153
     test@172.17.42.1's password:  # password
