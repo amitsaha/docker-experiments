@@ -1,7 +1,7 @@
 FROM fedora:20	
 MAINTAINER Amit Saha <amitsaha.in@gmail.com>
 
-RUN curl -o /etc/yum.repos.d/restraint.repo http://bpeck.fedorapeople.org/restraint/fc20.repo
+RUN curl -o /etc/yum.repos.d/restraint.repo https://bpeck.fedorapeople.org/restraint/fc20.repo
 RUN yum -y update; yum clean all
 RUN yum -y install openssh-server restraint
 
