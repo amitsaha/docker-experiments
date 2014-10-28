@@ -1,0 +1,10 @@
+Current manual steps:
+
+- Add lab controller
+- Import distro  on LC
+- Repo update on server
+- Add systems 
+- Add tasks
+
+Final destination:
+- Run job

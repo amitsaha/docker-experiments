@@ -1,5 +1,6 @@
-# Runs restraint under systemd
-# Based off: http://developerblog.redhat.com/2014/05/05/running-systemd-within-docker-container/
+# Runs beaker server + lab controller under systemd
+# Using the instructions at http://developerblog.redhat.com/2014/05/05/running-systemd-within-docker-container/
+# to run systemd
 
 FROM registry.hub.docker.com/fedora:20
 MAINTAINER Beaker Developers <beaker-devel@lists.fedoraproject.org>
@@ -14,20 +15,17 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
-RUN yum -y install openssh-server beaker-server beaker-lab-controller mariadb-server MySQL-python tftp-server mod_ssl 
+
+RUN yum -y install openssh-server beaker-server beaker-lab-controller mariadb-server MySQL-python tftp-server mod_ssl psmisc
 RUN systemctl enable beakerd beaker-proxy beaker-provision beaker-watchdog httpd mariadb tftp.socket
 
-# Setup the DB
-RUN yum -y install psmisc
-ADD ./config_mariadb.sh /config_mariadb.sh
-RUN chmod 755 /config_mariadb.sh
-RUN /config_mariadb.sh
+ADD ./startup.sh /startup.sh
 
 # password: password
 RUN echo 'root:root' | chpasswd
 # Most likely best reference: https://bugzilla.redhat.com/show_bug.cgi?id=966807
 RUN /usr/bin/sed -e '/session    required     pam_loginuid.so/ s/^#*/#/' -i /etc/pam.d/sshd
 
-# Expos ports for httpd, beaker-proxy, tftp
+# Expose ports for httpd, beaker-proxy, tftp
 EXPOSE 80 8000 69 22
-CMD ["/usr/sbin/init"]
+CMD ["/startup.sh"]
