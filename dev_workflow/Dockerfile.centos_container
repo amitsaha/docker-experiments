@@ -1,0 +1,6 @@
+
+FROM centos:centos6
+
+RUN useradd -u 1000 asaha
+USER 1000
+
