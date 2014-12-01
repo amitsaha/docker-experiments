@@ -14,3 +14,4 @@ EOF
 
 docker build -t $1 .
 mv Dockerfile Dockerfile.$1
+echo "$1 created"
