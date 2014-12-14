@@ -1,0 +1,5 @@
+---
+- hosts: docker-host
+  tasks:
+  - name: Leave a footprint
+    shell: echo "Ansible was here" > /tmp/ansible

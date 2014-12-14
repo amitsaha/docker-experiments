@@ -1,0 +1,16 @@
+Ansible tips
+------------
+
+* Define hosts in /etc/ansible/hosts. Example:
+
+  [docker-host]
+  10.64.41.123
+
+* Run an arbitrary shell command on all hosts: ansible -m shell -a 'uname -r' all -u asaha -k
+
+* Create a simple playbook (footprint.yml), run it: ansible-playbook -k uname.yml -u asaha
+
+Resources for learning more
+---------------------------
+
+* https://serversforhackers.com/editions/2014/08/26/getting-started-with-ansible/
