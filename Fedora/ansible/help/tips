@@ -6,11 +6,24 @@ Ansible tips
   [docker-host]
   10.64.41.123
 
-* Run an arbitrary shell command on all hosts: ansible -m shell -a 'uname -r' all -u asaha -k
+* Run an arbitrary shell command on all hosts: ansible all -m shell -a 'uname -r' -u asaha -k
 
 * Create a simple playbook (footprint.yml), run it: ansible-playbook -k uname.yml -u asaha
+
+* Using the virt module:
+
+Consider the following hosts:
+
+[libvirt-host]
+192.168.122.1
+
+  - ansible libvirt-host -m virt -a 'command=nodeinfo'
+  - ansible libvirt-host -m virt -a 'command=info'
+  - ansible libvirt-host -m virt -a 'command=list_vms'
+
 
 Resources for learning more
 ---------------------------
 
 * https://serversforhackers.com/editions/2014/08/26/getting-started-with-ansible/
+* libvirt: http://docs.ansible.com/virt_module.html
