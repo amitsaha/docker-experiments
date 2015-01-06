@@ -1,0 +1,27 @@
+$ docker run --name mariadb-client --link mariadb-instance:mariadb -ti mariadb-client
+
+bash-4.3# env
+HOSTNAME=b36bbd474658
+TERM=xterm
+MARIADB_PORT=tcp://172.17.0.17:3306
+MARIADB_PORT_3306_TCP=tcp://172.17.0.17:3306
+MARIADB_PORT_3306_TCP_PORT=3306
+MARIADB_PORT_3306_TCP_PROTO=tcp
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+_=/usr/bin/env
+PWD=/
+HOME=/root
+SHLVL=2
+MARIADB_NAME=/mariadb-client/mariadb
+MARIADB_PORT_3306_TCP_ADDR=172.17.0.17
+
+$ cat /etc/hosts
+ 172.17.0.18     b36bbd474658
+ 127.0.0.1       localhost
+ ::1     localhost ip6-localhost ip6-loopback
+ fe00::0 ip6-localnet
+ ff00::0 ip6-mcastprefix
+ ff02::1 ip6-allnodes
+ ff02::2 ip6-allrouters
+ 172.17.0.17     mariadb
+ 
