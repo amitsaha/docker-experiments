@@ -1,5 +1,7 @@
-FROM fedora:21
-RUN yum clean all
-RUN yum -y install jenkins
+FROM amitsaha/f21systemd
+
+RUN yum -y install jenkins tito
+RUN systemctl enable jenkins
 EXPOSE 8080
-CMD ["/usr/libexec/jenkins/jenkins","start"]
+
+CMD ["/usr/sbin/init"]
