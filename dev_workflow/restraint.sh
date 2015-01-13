@@ -1,5 +1,5 @@
 #!/bin/bash
-# ./restraint.sh <image_name> <docker_base_image>
+# ./restraint.sh <image_name> <docker_base_image> <restraint_dir>
 set -e
 uid=`id -u`
 user=`id -un`
@@ -14,10 +14,11 @@ RUN debuginfo-install -y bzip2-libs-1.0.6-14.fc21.x86_64 glib2-2.42.1-1.fc21.x86
 
 RUN useradd -u $uid $user
 USER $uid
+WORKDIR $3
 
 EOF
 
 docker build -t $1 .
 mv Dockerfile Dockerfile.$1
-echo "$1 created. Entering: /home/$user"
-docker run -v /home/$user:/home/$user -ti $1 bash
+echo "$1 created. Running restraint tests"
+docker run -rm=true -v /home/$user:/home/$user -ti $1 make check
