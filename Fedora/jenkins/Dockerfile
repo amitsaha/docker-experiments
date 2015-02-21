@@ -1,5 +1,7 @@
-FROM fedora:21
-RUN yum clean all
+FROM amitsaha/f21systemd
+
 RUN yum -y install jenkins
+RUN yum -y install initscripts #because jenkins needs /etc/init.d/functions
+RUN systemctl enable jenkins
 EXPOSE 8080
-CMD ["/usr/libexec/jenkins/jenkins","start"]
+CMD ["/usr/sbin/init"]
