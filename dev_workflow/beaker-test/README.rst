@@ -8,14 +8,21 @@ start working on) `beaker's
 Using it
 --------
 
-Build the base image based on Fedora 21 with all the dependencies::
+Two docker images based off Fedora 21
+(``beakerproject/beaker-development-fedora-21``) and CentOS 6.6
+(``beakerproject/beaker-development-centos-6``) are available from the
+`docker hub <https://hub.docker.com/u/beakerproject/>`__.
 
-    ./build_base_image.sh
+To run the tests on Fedora 21::
 
-Start a container using the above image specifying the local beaker
-directory and (optionally) the tests we want to run::
-
+    cd Fedora21
     ./run_tests.sh /path/to/beaker bkr.inttest.client.test_job_logs
+
+To run the tests on CentOS 6::
+
+    cd CentOS6
+    ./run_tests.sh /path/to/beaker bkr.inttest.client.test_job_logs
+
 
 If the second argument is not specified, the entire test suite is run.
 
@@ -37,6 +44,7 @@ Once the tests have completed running, you will back to your host::
 
     OK
 
+ 
 The local copy of your beaker is now in the docker image, you
 can continue working on your host's working copy making other changes,
 running other tests, etc.
@@ -45,4 +53,13 @@ Use cases
 ---------
 
 - Work on the beaker code base, running different tests simultaneously
-- (Future): Run tests on different distros
+- Run tests on different distros
+
+Notes
+-----
+
+The ``run_tests.sh`` creates a temporary sub-directory of the form
+``beaker-in-dockerXX`` from the directory you invoked the
+``run_tests.sh`` script from. It is not cleaned up after the test run is
+complete. The container executing the tests (named as
+``beaker-tests-run-xx``) are also not cleaned up.
