@@ -1,4 +1,4 @@
-# Run Beaker's Integration Tests in a Docker container
+## Run Beaker's Integration Tests in a Docker container
 
 This may be relevant to you if you are working on (or are looking to
 start working on) **Beaker** (https://beaker-project.org/dev/guide/writing-a-patch.html).
