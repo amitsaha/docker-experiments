@@ -65,4 +65,5 @@ docker run -t $imagename ./start.sh
 
 # cleanup
 popd
-echo "$workdir can be cleaned up"
+rm -rf $workdir
+

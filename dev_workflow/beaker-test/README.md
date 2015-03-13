@@ -68,6 +68,7 @@ running other tests, etc.
 
 The ``run_tests.sh`` creates a temporary sub-directory of the form
 ``beaker-in-dockerXX`` from the directory you invoked the
-``run_tests.sh`` script from. It is not cleaned up after the test run is
-complete. The container executing the tests (named as
-``beaker-tests-run-xx``) are also not cleaned up.
+``run_tests.sh`` script from. It is cleaned up after the test run is
+complete.
+
+The container executing the tests (named as ``beaker-tests-run-xx``) are not cleaned up.
