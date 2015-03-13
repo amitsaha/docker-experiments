@@ -5,10 +5,12 @@ start working on) **Beaker** (https://beaker-project.org/dev/guide/writing-a-pat
 
 ## Using it
 
-Two docker images based off Fedora 21
-(``beakerproject/beaker-development-fedora-21``) and CentOS 6.6
-(``beakerproject/beaker-development-centos-6``) are available from the
-docker hub account of the Beaker project (https://hub.docker.com/u/beakerproject/).
+Docker images based off Fedora 21
+(``beakerproject/beaker-development-fedora-21``), CentOS 6.6
+(``beakerproject/beaker-development-centos-6``) and CentOS 7
+((``beakerproject/beaker-development-centos-7``)) are available from the
+docker hub account of the Beaker project
+(https://hub.docker.com/u/beakerproject/).
 
 To run the tests on Fedora 21:
 
@@ -20,6 +22,12 @@ cd Fedora21
 To run the tests on CentOS 6:
 ```
 cd CentOS6
+./run_tests.sh /path/to/beaker bkr.inttest.client.test_job_logs
+```
+
+To run the tests on CentOS 7:
+```
+cd CentOS7
 ./run_tests.sh /path/to/beaker bkr.inttest.client.test_job_logs
 ```
 
