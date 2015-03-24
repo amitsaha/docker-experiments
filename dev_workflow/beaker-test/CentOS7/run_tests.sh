@@ -3,7 +3,7 @@
 
 set -e
 
-base_image="beakerproject/beaker-development-fedora-21"
+base_image="beakerproject/beaker-development-centos-7"
 
 uid=`id -u`
 user=`id -un`
@@ -66,4 +66,3 @@ docker run -t $imagename ./start.sh
 # cleanup
 popd
 rm -rf $workdir
-
