@@ -1,8 +1,7 @@
 bkr client
 ==========
 
-Docker image which will update the beaker client to the latest nightly
-on startup.
+Fedora 21 Docker image with the beaker client, ``bkr`` installed which will update the beaker client to the latest nightly on startup. Potentially useful for trying out new ``bkr`` commands.
 
 Example
 =======
