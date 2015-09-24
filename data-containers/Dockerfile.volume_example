@@ -1,0 +1,3 @@
+FROM fedora:latest
+VOLUME /data
+CMD /bin/bash
