@@ -2,12 +2,11 @@ mariadbdata:
   image: fedora
   volumes:
     - /var/lib/mysql
-  volumes:
     - /var/log/mariadb
-  command: bash -c "true"
+  command: echo "data"
 
 linux:
   image: fedora
   volumes_from:
     - mariadbdata
-  command: mount
+  command: ls -lrt /var/lib/

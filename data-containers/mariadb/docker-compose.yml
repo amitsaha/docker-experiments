@@ -1,0 +1,13 @@
+mariadbdata:
+  image: fedora
+  volumes:
+    - /var/lib/mysql
+    - /var/log/mariadb
+  command: echo "data container created"
+
+mariadb:
+  build: .
+  ports:
+    - "3307:3306"
+  volumes_from:
+    - mariadbdata
