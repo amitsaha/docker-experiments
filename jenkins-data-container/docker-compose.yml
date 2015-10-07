@@ -1,0 +1,12 @@
+jenkinsdata:
+  image: jenkins
+  volumes:
+    - /var/jenkins_home
+  command: "true"
+
+jenkinsserver:
+  image: jenkins
+  volumes_from:
+    - jenkinsdata
+  ports:
+    - "8080"
