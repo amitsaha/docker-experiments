@@ -19,7 +19,7 @@ signal.signal(signal.SIGTERM, sig_handler)
 # App startup
 dstat = os.stat("/data")
 if dstat:
-    if dstat.st_uid == 10000 and dstat.st_gid == 10000:
+    if os.access("/data", os.X_OK):
         child_process = subprocess.Popen(["/usr/local/bin/prometheus/prometheus", "--config.file", "/etc/prometheus.yml", "--storage.tsdb.path",  "/data"])
         child_process.wait()
     else:

@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prometheus
+  namespace: monitoring-localdev
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus
+      project: monitoring
+  serviceName: prometheus
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: prometheus
+        project: monitoring
+    spec:
+      serviceAccountName: prometheus
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 44444
+        runAsGroup: 44444
+        fsGroup: 44444
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: prometheus-infra
+        image: amitsaha/prometheus
+        ports:
+        - containerPort: 9090
+        volumeMounts:
+        
+        
+        - name: prometheus-data
+          mountPath: "/data"
+          readOnly: false
+        
+        imagePullPolicy: Never
+        args:
+        - bash
+        - -c
+        - "/startup.py"
+        env:
+          - name: ENVIRONMENT
+            value: localdev
+          
+          
+        securityContext:
+          privileged: false
+          allowPrivilegeEscalation: false
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "0.5"
+          limits:
+            memory: "4Gi"
+            cpu: "0.8"
+        
+        readinessProbe:
+          tcpSocket:
+            port: 9090
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 9090
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        
+      volumes:
+      - name: prometheus-data
+        
+        emptyDir: {}
+        
+      
+      
+

@@ -4,7 +4,8 @@ RUN yum -y update && \
 ENV APPLICATION_USER app
 ENV APPLICATION_GROUP app
 
-RUN groupadd -g 10000 app && \
-    useradd -u 10000 -g app -d /home/app -m -s /sbin/nologin app
+# Thanks serghei for 44444
+RUN groupadd -g 44444 app && \
+    useradd -u 44444 -g app -d /home/app -m -s /sbin/nologin app
 
 
