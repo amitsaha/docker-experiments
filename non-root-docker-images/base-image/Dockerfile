@@ -8,4 +8,8 @@ ENV APPLICATION_GROUP app
 RUN groupadd -g 44444 app && \
     useradd -u 44444 -g app -d /home/app -m -s /sbin/nologin app
 
+# Install dumb-init
+RUN curl -L -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64
+RUN chmod +x /usr/local/bin/dumb-init
 
+ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]

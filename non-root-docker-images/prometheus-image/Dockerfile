@@ -9,10 +9,12 @@ RUN curl --location -o prometheus-bin.tar.gz https://github.com/prometheus/prome
     cp -r /tmp/prometheus-$PROM_RELEASE.linux-amd64/* /usr/local/bin/prometheus/
 ADD prometheus.yml /etc/prometheus.yml
 
+ADD app.sh /app.sh
+RUN chmod +x /app.sh
 ADD startup.py /startup.py
 RUN chmod +x /startup.py
 
 VOLUME /data
 
 USER $APPLICATION_USER
-CMD ["/startup.py"]
+CMD ["/app.sh"]
