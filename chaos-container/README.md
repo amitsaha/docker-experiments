@@ -22,3 +22,7 @@ and https://livebook.manning.com/book/chaos-engineering/)
 ```
 # strace -f -p 61 -e trace=write -e fault=write:error=EAGAIN
 ```
+
+Inject a latency:
+
+Example: https://salvatoresecurity.com/exploiting-race-conditions-with-strace/#:~:text=One%20way%20that%20strace%20allows,call%20gets%20put%20to%20sleep.
